@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    </head>
+    <body>
+        <h1>Witaj w kalkulatorze walut.</h1>
+        <select name="baseCurrency" id="baseCurrency">
+            <option value="">--Wybierz walute bazową--</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="PLN">PLN</option>
+        </select>
+        <input name="amount" id="amount" placeholder="kwota">
+        <select name="targetCurrency" id="targetCurrency">
+            <option value="">--Wybierz walute docelową--</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="PLN">PLN</option>
+        </select>
+        <button onclick="convertCurrency()">Przelicz</button>
+        <script src="javascript.js">
+        </script>
+    </body>
+</html>
