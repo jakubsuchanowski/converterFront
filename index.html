@@ -13,7 +13,7 @@
             <option value="EUR">EUR</option>
             <option value="PLN">PLN</option>
         </select>
-        <input name="amount" id="amount" placeholder="kwota">
+        <input name="amount" id="amount" placeholder="kwota" type="number">
         <select name="targetCurrency" id="targetCurrency">
             <option value="">--Wybierz walute docelową--</option>
             <option value="USD">USD</option>
@@ -21,6 +21,13 @@
             <option value="PLN">PLN</option>
         </select>
         <button onclick="convertCurrency()">Przelicz</button>
+        <button onclick="conversionHistoryShow()">Pokaż historie przeliczeń</button>
+        <button onclick="conversionHistoryHide()">Ukryj historie przeliczeń</button>
+        <button onclick="clearHistory()">Wyczyść historię przeliczeń</button>
+        <br><br>
+        <div id="result"></div>
+        <div id="conversionHistory"></div>
+        <div id="komunikat"></div>
         <script src="javascript.js">
         </script>
     </body>
