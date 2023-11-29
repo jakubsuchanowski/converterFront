@@ -7,15 +7,16 @@
     </head>
     <body>
         <h1>Witaj w kalkulatorze walut.</h1>
+        <input name="amount" id="amount" placeholder="kwota" type="number">
         <select name="baseCurrency" id="baseCurrency">
-            <option value="">--Wybierz walute bazową--</option>
+            <option value="" disabled selected>--Wybierz walute bazową--</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="PLN">PLN</option>
         </select>
-        <input name="amount" id="amount" placeholder="kwota" type="number">
+        <button onclick="swapOptions()">Zamień waluty</button>
         <select name="targetCurrency" id="targetCurrency">
-            <option value="">--Wybierz walute docelową--</option>
+            <option value="" disabled selected>--Wybierz walute docelową--</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="PLN">PLN</option>

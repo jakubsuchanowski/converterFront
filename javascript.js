@@ -10,6 +10,14 @@ function convertCurrency(){
     const baseCurrency=document.getElementById("baseCurrency").value;
     const targetCurrency=document.getElementById("targetCurrency").value;
 
+    if(baseCurrency===""){
+            alert("Proszę wybrać walute bazową.");
+            return false; 
+        }
+        if(targetCurrency===""){
+            alert("Proszę wybrać walute docelową.");
+            return false; 
+        }
     fetch(`http://localhost:8080/currencyconvert/${baseCurrency}/${targetCurrency}?amount=${amount}`)
     .then(response => response.json())
     .then(data=>{
@@ -92,5 +100,16 @@ function clearHistory(){
         console.error("Error:", error);
         alert(`Error: ${error.message}`);
     }
+}
+
+function swapOptions(){
+   
+    var baseCurrency = document.getElementById("baseCurrency");
+    var targetCurrency = document.getElementById("targetCurrency");
+
+    var tempValue = baseCurrency.value;
+    baseCurrency.value = targetCurrency.value;
+    targetCurrency.value = tempValue;
+
 }
 
