@@ -19,7 +19,13 @@ function convertCurrency(){
             alert("Proszę wybrać walute docelową.");
             return false; 
         }
-    fetch(`http://localhost:8080/currencyconvert/${baseCurrency}/${targetCurrency}?amount=${amount}`)
+    fetch(`http://localhost:8080/currencyconvert/${baseCurrency}/${targetCurrency}?amount=${amount}`, {
+        method: 'GET',
+        credentials: 'include', // Include credentials (cookies)
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
     .then(response => response.json())
     .then(data=>{
         const resultElement =document.getElementById("result");
@@ -34,7 +40,13 @@ function convertCurrency(){
 
 function conversionHistoryShow(){
     try{
-    fetch(`http://localhost:8080/currencyconvert/history`)
+    fetch(`http://localhost:8080/currencyconvert/history`,{
+        method: 'GET',
+        credentials: 'include', // Include credentials (cookies)
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
     .then(response=>{
         if(response.status!==200){
             return Promise.reject('Cos poszło nie tak!');
@@ -64,16 +76,19 @@ function dispalyConversionHistory(history){
     container.innerHTML=" ";
     var content="<table border='1'> <thead><tr><th>Waluta bazowa</th>"+
         "<th>Kwota</th><th>Waluta docelowa</th><th>Wynik</th><th>Data</th></tr></thead><tbody>";
-    for(var element in history){
-        var id = history[element].id;
-        var baseCurrency=history[element].baseCurrency;
-        var amount = history[element].amount;
-        var targetCurrency = history[element].targetCurrency;
-        var result = history[element].result;
-        var dateTime = history[element].dateTime;
-        content += "<tr><td>" + baseCurrency + "</td><td>" + amount +
-            "</td><td>" + targetCurrency + "</td><td>" + result + "</td><td>"+ dateTime + "</td></tr>";
-    }
+    // for(var element in history){
+    //     var id = history[element].id;
+    //     var baseCurrency=history[element].baseCurrency;
+    //     var amount = history[element].amount;
+    //     var targetCurrency = history[element].targetCurrency;
+    //     var result = history[element].result;
+    //     var dateTime = history[element].dateTime;
+    //     content += "<tr><td>" + baseCurrency + "</td><td>" + amount +
+    //         "</td><td>" + targetCurrency + "</td><td>" + result + "</td><td>"+ dateTime + "</td></tr>";
+    // }
+    history.forEach(element=>{
+        content += "<tr><td>" +element.amount+ "</td><td>" + element.baseCurrency + "</td><td>"+ element.targetCurrency +"</td><td>"+ element.result + "</td><td>"+ element.dateTime +"</td></tr>";
+    })
     content += "</tbody></table>";
     historyTable.innerHTML = content;
 }
@@ -94,6 +109,7 @@ function clearHistory(){
     container.innerHTML=" ";
         fetch(`http://localhost:8080/currencyconvert/history/clear`,{
             method: 'DELETE',
+            credentials: 'include', // Include credentials (cookies)
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -128,7 +144,13 @@ function showExchangeRates(){
     var container = document.getElementById("exchangeRatesContainer");
     container.innerHTML=" ";
     try{
-    fetch(`http://localhost:8080/exchangerate`)
+    fetch(`http://localhost:8080/exchangerate`, {
+    method: 'GET',
+    credentials: 'include', // Include credentials (cookies)
+    headers: {
+        'Content-Type': 'application/json',
+    },
+})
     .then(response=>{
         if(response.status!==200){
             return Promise.reject('Cos poszło nie tak!');
